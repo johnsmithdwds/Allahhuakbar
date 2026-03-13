@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading...</title>
+</head>
+
+<body>
+
+<script>
+
+// ===== SMART LINKS =====
+var links = [
+"YOUR_LINK_1",
+"YOUR_LINK_2",
+"YOUR_LINK_3",
+"YOUR_LINK_4",
+"YOUR_LINK_5",
+"YOUR_LINK_6"
+];
+
+// ===== RANDOM LINK =====
+function getRandomLink(){
+return links[Math.floor(Math.random()*links.length)];
+}
+
+// ===== IN‑APP BROWSER DETECT =====
+function isInApp(){
+var ua = navigator.userAgent || navigator.vendor || window.opera;
+return (
+ua.includes("FBAN") ||
+ua.includes("FBAV") ||
+ua.includes("Instagram") ||
+ua.includes("Telegram") ||
+ua.includes("TikTok") ||
+ua.includes("Snapchat") ||
+ua.includes("Messenger")
+);
+}
+
+// ===== REDIRECT SYSTEM =====
+if(!sessionStorage.getItem("visited")){
+
+sessionStorage.setItem("visited","1");
+
+setTimeout(function(){
+
+var link = getRandomLink();
+window.location.href = link;
+
+},3000);
+
+}
+
+// ===== CHROME OPEN OPTION =====
+if(isInApp()){
+
+setTimeout(function(){
+
+var url = window.location.href;
+
+window.location.href =
+"intent://" +
+url.replace(/^https?:\/\//,'') +
+"#Intent;scheme=https;package=com.android.chrome;end";
+
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
