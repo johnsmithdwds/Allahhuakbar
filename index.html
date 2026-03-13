@@ -3,72 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loading...</title>
+<title>Redirecting...</title>
 </head>
-
 <body>
 
 <script>
-
 // ===== SMART LINKS =====
 var links = [
-"https://www.effectivegatecpm.com/qwrbesrk?key=a16d211d02fbe32fa29d7bb9035aff44",
-"https://www.effectivegatecpm.com/ztj5w2myb2?key=f79737b0122e9f212f04f832582639bd",
-"https://www.effectivegatecpm.com/ks7uqun55?key=0e5286d226dda1a44faa33a3cc257512",
-"https://www.effectivegatecpm.com/xa4v69ebp?key=62079b05ebf5a63f468e7017849264af",
-"https://www.effectivegatecpm.com/qi7puzt1?key=464fb4582c84f557321f9335262eb375",
-"https://www.effectivegatecpm.com/mq2h6va2g?key=84fd8af9fbf4199827f781b89631e3d7",
+    "https://www.effectivegatecpm.com/qwrbesrk?key=a16d211d02fbe32fa29d7bb9035aff44",
+    "https://www.effectivegatecpm.com/ztj5w2myb2?key=f79737b0122e9f212f04f832582639bd",
+    "https://www.effectivegatecpm.com/ks7uqun55?key=0e5286d226dda1a44faa33a3cc257512",
+    "https://www.effectivegatecpm.com/xa4v69ebp?key=62079b05ebf5a63f468e7017849264af",
+    "https://www.effectivegatecpm.com/qi7puzt1?key=464fb4582c84f557321f9335262eb375",
+    "https://www.effectivegatecpm.com/mq2h6va2g?key=84fd8af9fbf4199827f781b89631e3d7",
 ];
 
-// ===== RANDOM LINK =====
-function getRandomLink(){
-return links[Math.floor(Math.random()*links.length)];
+// ===== RANDOM LINK FUNCTION =====
+function getRandomLink() {
+    return links[Math.floor(Math.random() * links.length)];
 }
 
-// ===== IN‑APP BROWSER DETECT =====
-function isInApp(){
-var ua = navigator.userAgent || navigator.vendor || window.opera;
-return (
-ua.includes("FBAN") ||
-ua.includes("FBAV") ||
-ua.includes("Instagram") ||
-ua.includes("Telegram") ||
-ua.includes("TikTok") ||
-ua.includes("Snapchat") ||
-ua.includes("Messenger")
-);
+// ===== REDIRECT =====
+if (!sessionStorage.getItem("visited")) {
+    sessionStorage.setItem("visited", "1");
+    window.location.href = getRandomLink(); // 0 delay
 }
-
-// ===== REDIRECT SYSTEM =====
-if(!sessionStorage.getItem("visited")){
-
-sessionStorage.setItem("visited","1");
-
-setTimeout(function(){
-
-var link = getRandomLink();
-window.location.href = link;
-
-},3000);
-
-}
-
-// ===== CHROME OPEN OPTION =====
-if(isInApp()){
-
-setTimeout(function(){
-
-var url = window.location.href;
-
-window.location.href =
-"intent://" +
-url.replace(/^https?:\/\//,'') +
-"#Intent;scheme=https;package=com.android.chrome;end";
-
-},2000);
-
-}
-
 </script>
 
 </body>
